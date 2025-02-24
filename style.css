@@ -1,0 +1,318 @@
+/* Tüm elementlerin margin, padding ve box-sizing özelliklerini sıfırlar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Sayfa genelinde kullanılacak yazı tipi ve temel metin özelliklerini belirler */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6; /* Satır yüksekliği */
+    color: #333; /* Metin rengi */
+}
+
+/* Üst menü çubuğunun stilini belirler */
+header {
+    background-color: rgba(255, 255, 255, 0.95); /* Yarı saydam beyaz arka plan */
+    backdrop-filter: blur(5px); /* Arka planı bulanıklaştırır */
+    position: fixed; /* Menüyü sayfanın üstüne sabitler */
+    width: 100%;
+    top: 0;
+    z-index: 1000; /* Diğer elementlerin üzerinde görünmesini sağlar */
+}
+
+/* Navigasyon menüsünün düzenini ayarlar */
+nav {
+    display: flex;
+    justify-content: space-between; /* İçerikleri sağa ve sola yaslar */
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+/* Menü listesinin stilini belirler */
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 1rem;
+}
+
+/* Menü öğeleri arasındaki boşluğu ayarlar */
+nav ul li {
+    margin: 0 1rem;
+}
+
+/* Menü bağlantılarının stilini belirler */
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+/* Menü bağlantılarının altında görünecek çizginin stilini belirler */
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #007bff;
+    transition: width 0.3s ease;
+}
+
+/* Fare ile üzerine gelindiğinde alt çizgiyi gösterir */
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Ana görsel bölümünün stilini belirler */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Paralaks efekti için */
+    text-align: center;
+}
+
+/* Ana görsel içeriğinin stilini belirler */
+.hero-content {
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 1.5s ease-out;
+}
+
+/* Ana başlığın stilini belirler */
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 2px;
+}
+
+/* Alt başlığın stilini ve animasyonunu belirler */
+.hero-content p {
+    font-size: 1.5rem;
+    opacity: 0;
+    animation: slideUp 1s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+/* Bölümlerin genel stilini belirler */
+section {
+    padding: 5rem 2rem;
+}
+
+/* Bölüm başlıklarının stilini belirler */
+section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+/* Hakkımda bölümünün stilini belirler */
+#hakkimda {
+    background: linear-gradient(135deg, #1a252f 0%, #2c3e50 100%);
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+}
+
+/* Hakkımda içeriğinin stilini belirler */
+.about-content {
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 3rem;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 3rem;
+    line-height: 1.8;
+}
+
+/* Alt bilgi bölümünün stilini belirler */
+footer {
+    background: #1a252f;
+    color: #fff;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Alt bilgi metninin stilini belirler */
+footer p {
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* İletişim bölümünün stilini belirler */
+.contact-info {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    text-align: center;
+    padding: 2rem;
+}
+
+/* İletişim detaylarının container stilini belirler */
+.contact-details {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* İletişim bilgilerinin stilini belirler */
+.contact-details p {
+    padding: 1rem;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+/* İletişim kartlarının hover efektini belirler */
+.contact-details p:hover {
+    transform: translateY(-3px);
+}
+
+/* Sosyal medya bağlantılarının stilini belirler */
+.social-link {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+}
+
+/* Sosyal medya bağlantılarının hover efektini belirler */
+.social-link:hover {
+    color: #007bff;
+}
+
+/* Arama kutusu container'ının stilini belirler */
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Arama kutusunun stilini belirler */
+.search-input {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+    width: 200px;
+    transition: all 0.3s;
+}
+
+/* Arama kutusu odaklandığında stilini belirler */
+.search-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0,123,255,0.3);
+}
+
+/* Arama butonunun stilini belirler */
+.search-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    transition: transform 0.3s;
+}
+
+/* Arama butonunun hover efektini belirler */
+.search-button:hover {
+    transform: scale(1.1);
+}
+
+/* Mobil cihazlar için responsive düzenlemeler */
+@media (max-width: 768px) {
+    /* Mobilde ana başlık boyutunu küçültür */
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    /* Mobilde alt başlık boyutunu küçültür */
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+    
+    /* Mobilde menüyü dikey hale getirir */
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    /* Mobilde arama container'ını tam genişlikte yapar */
+    .search-container {
+        width: 100%;
+    }
+    
+    /* Mobilde arama kutusunu tam genişlikte yapar */
+    .search-input {
+        width: 100%;
+    }
+    
+    /* Mobilde başlık boyutunu küçültür */
+    h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Yukarıdan aşağı kayma animasyonu */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Aşağıdan yukarı kayma animasyonu */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Başlıkların genel stilini belirler */
+h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+/* Başlıkların altındaki çizginin stilini belirler */
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: #007bff;
+} 
