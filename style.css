@@ -10,6 +10,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6; /* Satır yüksekliği */
     color: #333; /* Metin rengi */
+    animation: pageLoad 1s ease-out;
 }
 
 /* Üst menü çubuğunun stilini belirler */
@@ -48,9 +49,10 @@ nav ul li a {
     text-decoration: none;
     color: #333;
     font-weight: 500;
-    transition: color 0.3s;
+    transition: all 0.3s;
     position: relative;
     padding: 0.5rem 0;
+    overflow: hidden;
 }
 
 /* Menü bağlantılarının altında görünecek çizginin stilini belirler */
@@ -66,8 +68,9 @@ nav ul li a::after {
 }
 
 /* Fare ile üzerine gelindiğinde alt çizgiyi gösterir */
-nav ul li a:hover::after {
-    width: 100%;
+nav ul li a:hover {
+    color: #007bff;
+    transform: translateY(-2px);
 }
 
 /* Ana görsel bölümünün stilini belirler */
@@ -76,11 +79,26 @@ nav ul li a:hover::after {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('background.jpg');
-    background-size: cover;
+    background-image: none; /* Eski arka planı kaldır */
+    position: relative;
+    z-index: 1;
+    animation: gradientMove 15s ease infinite;
+    background-size: 200% 200%;
     background-position: center;
     background-attachment: fixed; /* Paralaks efekti için */
     text-align: center;
+}
+
+/* İçeriklerin okunabilir olması için arka plan ekleyelim */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -1;
 }
 
 /* Ana görsel içeriğinin stilini belirler */
@@ -118,7 +136,7 @@ section h2 {
 
 /* Hakkımda bölümünün stilini belirler */
 #hakkimda {
-    background: linear-gradient(135deg, #1a252f 0%, #2c3e50 100%);
+    background: rgba(26, 37, 47, 0.9);
     position: relative;
     overflow: hidden;
     color: #fff;
@@ -140,6 +158,13 @@ section h2 {
     border-bottom: 2px solid #3498db;
     padding-bottom: 3rem;
     line-height: 1.8;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.about-content:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
 }
 
 /* Alt bilgi bölümünün stilini belirler */
@@ -178,14 +203,17 @@ footer p {
     border-radius: 8px;
     background: white;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+    perspective: 1000px;
     font-size: 1.1rem;
     color: #333;
 }
 
 /* İletişim kartlarının hover efektini belirler */
 .contact-details p:hover {
-    transform: translateY(-3px);
+    transform: translateY(-5px) rotateX(10deg);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
 /* Sosyal medya bağlantılarının stilini belirler */
@@ -210,17 +238,18 @@ footer p {
 /* Arama kutusunun stilini belirler */
 .search-input {
     padding: 0.5rem 1rem;
-    border: 1px solid #ddd;
+    border: 2px solid transparent;
     border-radius: 20px;
     outline: none;
     width: 200px;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
 }
 
 /* Arama kutusu odaklandığında stilini belirler */
 .search-input:focus {
+    width: 250px;
     border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0,123,255,0.3);
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.2);
 }
 
 /* Arama butonunun stilini belirler */
@@ -312,7 +341,58 @@ h2::after {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 50px;
+    width: 0;
     height: 3px;
     background: #007bff;
+    transition: width 0.5s ease;
+}
+
+h2:hover::after {
+    width: 100px;
+}
+
+/* Yeni animasyonlar ekleyelim */
+@keyframes pageLoad {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Görünüm animasyonu için yeni class */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease-out;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Canvas stilini ekleyelim */
+#matrixCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Diğer içeriklerin arkasında kalması için */
 } 
